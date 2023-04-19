@@ -1,0 +1,49 @@
+from flask import Flask, jsonify,request
+from flask_cors import CORS
+from userdefined import *
+from datetime import datetime
+import json
+
+
+
+'''  initialize app for flask '''
+app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}},support_credentials=True)
+#app.config['CORS_HEADERS'] = 'Content-Type'
+    
+    
+'''  renders home page of the application '''
+@app.route('/firebase',methods=['GET'])
+#@app.route('/',methods=['GET','POST'])
+def default():
+    return "connected"
+
+
+
+@app.route('/firebase/getdata',methods=['POST'])
+def getdata():
+    data = request.get_json()
+    
+        
+    data = json.loads(data)
+    
+    now = datetime.now()
+    dt = now.strftime("%d-%m-%Y %H:%M:%S")
+    data["timestamp"] = dt
+    if data["rpi"] == "blackbox_bmp180":
+        query = "INSERT INTO {} VALUES( {}, '{}', '{}', {}, '{}','{}','{}')".format(data["rpi"], data["Pressure"],data["IPAddress"],data["ImgRef"],data["Temperature"], timeStamp,0,data["image"],data["location"])
+    elif data["rpi"] in ("sonya_cummings","lilli_speight"):
+        query = "INSERT INTO {} VALUES( {}, '{}', '{}', {}, {},'{}',{},'{}','{}',{})".format(data["rpi"], data["Humidity"],data["IPAddress"],data["ImgRef"],data["Motion"],data["Temperature"], data["timestamp"],0,data["image"],data["location"],data["brightness"])
+    else:
+        query = "INSERT INTO {} VALUES( {}, '{}', '{}', {}, {}, '{}', '{}',{},'{}','{}',{})".format(data["rpi"], data["Humidity"],data["IPAddress"],data["ImgRef"],data["Motion"],data["Temperature"],data["Thermal"], data["timestamp"],0,data["image"],data["location"],data["brightness"])
+        
+    status = saveSqlite(query)
+    
+    
+    return "true"
+    
+    
+'''  The service runs on port 8071 '''
+if __name__ == '__main__':
+    #app.run(host='127.0.0.1',debug=True,port="8071")
+    app.run(host='128.192.158.63', port=8071, debug=True)
