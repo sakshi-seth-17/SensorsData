@@ -73,9 +73,9 @@ WantedBy=multi-user.target
 
 ---
 ### Folder Structure
-	- venv/
-  - Data-Store.db (Not on github because the file is large)
-	- app.py
-	- userdefined.py
-	- requirement.txt
+- venv/
+- Data-Store.db (Not on github because the file is large)
+- app.py
+- userdefined.py
+- requirement.txt
 	
