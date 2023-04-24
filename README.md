@@ -31,6 +31,7 @@ This API is built using Python's flask package to store information coming in fr
     `#SensorsData` \
     `ProxyPass /database  http://128.192.158.63:8071/database` \
     `ProxyPassReverse /database  http://128.192.158.63:8071/database` \
+  - Now restart apache2
     `sudo systemctl restart apache2` \
     `sudo systemctl status apache2` \
     
