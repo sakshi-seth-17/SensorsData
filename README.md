@@ -71,3 +71,11 @@ WantedBy=multi-user.target
 1. The application is built using Python.
 2. The application runs on port 8071
 
+---
+### Folder Structure
+	- venv/
+  - Data-Store.db (Not on github because the file is large)
+	- app.py
+	- userdefined.py
+	- requirement.txt
+	
