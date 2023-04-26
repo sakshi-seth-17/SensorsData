@@ -58,7 +58,7 @@ Paste below lines inside the file by making necessary changes
 `sudo systemctl enable SensorsData.service` \
 `sudo systemctl daemon-reload` \
 `sudo systemctl start SensorsData.service` \
-`sudo systemctl status SensorsData.service` \
+`sudo systemctl status SensorsData.service` 
 
 ---
 ### Location details of the components:
