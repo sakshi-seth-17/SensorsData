@@ -5,7 +5,7 @@ This API is built using Python's flask package to store information coming in fr
 ---
 
 ### Flow of the application:
-<img src="https://github.com/sakshi-seth-17/Reporting-Project/blob/main/Sensor-Daily-Report.jpg" alt="Alt text" title="Optional title">
+<img src="https://github.com/sakshi-seth-17/SensorsData/blob/main/SensorDataFlow.jpg" alt="Alt text" title="Optional title">
 
 ### Instructions
 1. Clone this repository. \
