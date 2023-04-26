@@ -1,6 +1,3 @@
-'''
-Initialize required packages
-'''
 from flask import Flask, jsonify,request
 from flask_cors import CORS
 from userdefined import *
@@ -9,37 +6,28 @@ import json
 
 
 
-'''  
-    initialize app for flask 
-'''
+'''  initialize app for flask '''
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}},support_credentials=True)
-#app.config['CORS_HEADERS'] = 'Content-Type'
     
     
-'''  
-    root API to check if connetion is established 
-'''
-@app.route('/firebase',methods=['GET'])
-#@app.route('/',methods=['GET','POST'])
+'''  renders home page of the application '''
+@app.route('/database',methods=['GET'])
 def default():
     return "connected"
 
 
-'''
-    Gets data from RPIs to store in local database
-'''
-@app.route('/firebase/getdata',methods=['POST'])
+
+@app.route('/database/storedata',methods=['POST'])
 def getdata():
-    #json data
     data = request.get_json()
+    
+        
     data = json.loads(data)
     
     now = datetime.now()
     dt = now.strftime("%d-%m-%Y %H:%M:%S")
     data["timestamp"] = dt
-    
-    #based on rpidescription different insert query
     if data["rpi"] == "blackbox_bmp180":
         query = "INSERT INTO {} VALUES( {}, '{}', '{}', {}, '{}','{}','{}')".format(data["rpi"], data["Pressure"],data["IPAddress"],data["ImgRef"],data["Temperature"], timeStamp,0,data["image"],data["location"])
     elif data["rpi"] in ("sonya_cummings","lilli_speight"):
@@ -47,7 +35,6 @@ def getdata():
     else:
         query = "INSERT INTO {} VALUES( {}, '{}', '{}', {}, {}, '{}', '{}',{},'{}','{}',{})".format(data["rpi"], data["Humidity"],data["IPAddress"],data["ImgRef"],data["Motion"],data["Temperature"],data["Thermal"], data["timestamp"],0,data["image"],data["location"],data["brightness"])
         
-    #sends this query to saveSqlite() in userdefined.py to save it into the sqlite database
     status = saveSqlite(query)
     
     
@@ -56,6 +43,4 @@ def getdata():
     
 '''  The service runs on port 8071 '''
 if __name__ == '__main__':
-    #app.run(host='127.0.0.1',debug=True,port="8071")
-    #app runs on port 8071
     app.run(host='128.192.158.63', port=8071, debug=True)
