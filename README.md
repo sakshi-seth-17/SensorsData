@@ -27,7 +27,7 @@ To check if application is working fine run – 'python3 app.py` \
   - sudo ufw status
   - cd /etc/apache2/sites-available
   - sudo nano 000-default.conf
-    o	Add below lines
+    o	Add below lines \
     		#SensorsData 
     		ProxyPass /database  http://128.192.158.63:8071/database
     		ProxyPassReverse /database  http://128.192.158.63:8071/database
@@ -39,10 +39,10 @@ To check if application is working fine run – 'python3 app.py` \
 ### Create service file to make the app run indefinitely
 `sudo nano /lib/systemd/system/SensorsData.service` \
 Paste below lines inside the file by making necessary changes \
+
 		[Unit] 
 		Description=Sensor Data Management 
 		After=multi-user.target 
-
 
 		[Service] 
 		User=webserver 
