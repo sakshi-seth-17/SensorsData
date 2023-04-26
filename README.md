@@ -28,9 +28,9 @@ To check if application is working fine run – 'python3 app.py` \
   - cd /etc/apache2/sites-available
   - sudo nano 000-default.conf
     o	Add below lines
-    		`#SensorsData` \
-    		`ProxyPass /database  http://128.192.158.63:8071/database` \
-    		`ProxyPassReverse /database  http://128.192.158.63:8071/database` \
+    		#SensorsData 
+    		ProxyPass /database  http://128.192.158.63:8071/database
+    		ProxyPassReverse /database  http://128.192.158.63:8071/database
   - Now restart apache2
     `sudo systemctl restart apache2` \
     `sudo systemctl status apache2` \
@@ -39,20 +39,20 @@ To check if application is working fine run – 'python3 app.py` \
 ### Create service file to make the app run indefinitely
 `sudo nano /lib/systemd/system/SensorsData.service` \
 Paste below lines inside the file by making necessary changes \
-	[Unit] 
-	Description=Sensor Data Management 
-	After=multi-user.target 
+		[Unit] 
+		Description=Sensor Data Management 
+		After=multi-user.target 
 
 
-	[Service] 
-	User=webserver 
-	Type=idle 
-	ExecStart=/var/www/aspendb/probesearch/SensorsData/venv/bin/python3 /var/www/aspendb/probesearch/SensorsData/app.py 
-	Restart=on-failure 
+		[Service] 
+		User=webserver 
+		Type=idle 
+		ExecStart=/var/www/aspendb/probesearch/SensorsData/venv/bin/python3 /var/www/aspendb/probesearch/SensorsData/app.py 
+		Restart=on-failure 
 
 
-	[Install] 
-	WantedBy=multi-user.target 
+		[Install] 
+		WantedBy=multi-user.target 
 
 `sudo chmod 644 /lib/systemd/system/SensorsData.service` \
 `sudo systemctl enable SensorsData.service` \
