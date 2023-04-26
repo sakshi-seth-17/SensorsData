@@ -32,13 +32,13 @@ To check if application is working fine run – `python3 app.py`
     		ProxyPass /database  http://128.192.158.63:8071/database  \
     		ProxyPassReverse /database  http://128.192.158.63:8071/database   
   - Now restart apache2
-    `sudo systemctl restart apache2` \
+    `sudo systemctl restart apache2` 
     `sudo systemctl status apache2` 
     
 
 ### Create service file to make the app run indefinitely
 `sudo nano /lib/systemd/system/SensorsData.service` \
-Paste below lines inside the file by making necessary changes \
+Paste below lines inside the file by making necessary changes 
 
 		[Unit] 
 		Description=Sensor Data Management 
