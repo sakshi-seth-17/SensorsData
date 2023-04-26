@@ -28,9 +28,9 @@ To check if application is working fine run – 'python3 app.py` \
   - cd /etc/apache2/sites-available
   - sudo nano 000-default.conf
     o	Add below lines \
-    		#SensorsData 
-    		ProxyPass /database  http://128.192.158.63:8071/database
-    		ProxyPassReverse /database  http://128.192.158.63:8071/database
+    		#SensorsData  \
+    		ProxyPass /database  http://128.192.158.63:8071/database  \
+    		ProxyPassReverse /database  http://128.192.158.63:8071/database   \
   - Now restart apache2
     `sudo systemctl restart apache2` \
     `sudo systemctl status apache2` \
