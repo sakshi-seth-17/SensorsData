@@ -35,8 +35,8 @@ To check if application is working fine run – `python3 app.py`
     		ProxyPassReverse /database  http://128.192.158.63:8071/database   
 		
 		
-  - Now restart apache2
-    `sudo systemctl restart apache2` 
+  - Now restart apache2	\
+    `sudo systemctl restart apache2` \
     `sudo systemctl status apache2` 
     
 
