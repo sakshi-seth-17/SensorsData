@@ -22,12 +22,12 @@ To check if application is working fine run – `python3 app.py`
 ### API listing on webserver
 1. To access any API from outside the server, the API needs to be listed on the server.
 2. Steps to register the API on the server with reverse proxy:
-  - First, allow outgoing port - `sudo ufw allow 8071` \
-  - `sudo ufw enable` \
-  - `sudo ufw status` \
-  - `cd /etc/apache2/sites-available` \
-  - `sudo nano 000-default.conf` \
-    o	Add below lines \
+  - First, allow outgoing port - `sudo ufw allow 8071` 
+  - `sudo ufw enable` 
+  - `sudo ufw status` 
+  - `cd /etc/apache2/sites-available` 
+  - `sudo nano 000-default.conf` 
+    o	Add below lines 
     
     
     		#SensorsData  
